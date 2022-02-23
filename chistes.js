@@ -1,6 +1,7 @@
-const chisteAPIButton = document.querySelector('#chisteNuevo');
+const chisteAPIButton = document.querySelector('.btn');
 chisteAPIButton.addEventListener('click', mostrarChiste);
 
+let joke = '';
 
 async function mostrarChiste() {
     const url = 'https://icanhazdadjoke.com/';
@@ -10,17 +11,14 @@ async function mostrarChiste() {
                             }
                         });
         const json = await response.json();
-        console.log('oki');
+        joke = addJoke(json.joke);
     } catch (error) {
         console.log(error);
     }
-//     const url = 'https://icanhazdadjoke.com/';
-//     fetch(url,{
-//         headers: {
-//             'Accept': 'application/json'
-//         }
-//     })
-//         .then(response => response.json())
-//         .then(json => console.log(json));
 }
-mostrarChiste()
+
+const addJoke = joke => {
+    const placeJoke = document.querySelector('.card-text');
+    placeJoke.innerHTML = joke;
+}
+
