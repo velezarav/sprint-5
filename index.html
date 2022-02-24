@@ -15,11 +15,11 @@
         <p class="card-text">Press if you want to hear a new joke.</p>
         <form name="scores" class="joke-score">
           <p>Score this joke</p>
-          <input type="radio" id="score1" name="score" value="1">
+          <input type="radio" onclick="createReport(1)" id="score1" name="score" value="1">
           <label for="score1"><img src="https://img.icons8.com/external-justicon-lineal-color-justicon/64/000000/external-emoji-emoji-justicon-lineal-color-justicon-1.png"/></label>
-          <input type="radio" id="score2" name="score" value="2">
+          <input type="radio" onclick="createReport(2)" id="score2" name="score" value="2">
           <label for="score2"><img src="https://img.icons8.com/external-justicon-lineal-color-justicon/64/000000/external-emoji-emoji-justicon-lineal-color-justicon-3.png"/></label>
-          <input type="radio" id="score3" name="score" value="3">
+          <input type="radio" onclick="createReport(3)" id="score3" name="score" value="3">
           <label for="score3"><img src="https://img.icons8.com/external-justicon-lineal-color-justicon/64/000000/external-emoji-emoji-justicon-lineal-color-justicon-7.png"/></label>
         </form>
         <a class="btn btn-primary">New joke</a>

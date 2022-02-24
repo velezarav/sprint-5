@@ -1,17 +1,12 @@
 const chisteAPIButton = document.querySelector('.btn');
-chisteAPIButton.addEventListener('click', mostrarChiste);
+chisteAPIButton.addEventListener('click', addJoke);
 const scoreContent = document.querySelector('.joke-score');
-scoreContent.addEventListener('click', createReport);
-// const score1 = document.querySelector('#score1');
-// const score2 = document.querySelector('#score2');
-// const score3 = document.querySelector('#score3');
-// score1.addEventListener('click', createReport);
-// score2.addEventListener('click', createReport);
-// score3.addEventListener('click', createReport);
 
-let joke = '';
+let jokeDad = '';
+let jokeChuck = '';
+let jokeFinal = '';
 
-async function mostrarChiste() {
+async function fetchJoke() {
     const url = 'https://icanhazdadjoke.com/';
     try {
         const response = await fetch(url,{ headers: {
@@ -19,33 +14,49 @@ async function mostrarChiste() {
                             }
                         });
         const json = await response.json();
-        joke = addJoke(json.joke);
-        scoreContent.style.display = 'inline';
+        jokeDad = json.joke;
+        // joke = addJoke(json.joke);
+        // scoreContent.style.display = 'inline';
+    } catch (error) {
+        console.log(error);
+    }
+}
+async function fetchChuck () {
+    const url = 'https://api.chucknorris.io/jokes/random';
+    try {
+        const response = await fetch(url);
+        const json = await response.json();
+        jokeChuck = json.value;
     } catch (error) {
         console.log(error);
     }
 }
 
-const addJoke = joke => {
+function addJoke() {
+    const randomNumber = Math.floor(Math.random() * 2) + 1;
+
+    if ( randomNumber === 1) {
+        fetchJoke();
+        jokeFinal = jokeDad;
+    } else {
+        fetchChuck();
+        jokeFinal = jokeChuck;
+    }
+    console.log(':)')
+    scoreContent.style.display = 'inline';
     const placeJoke = document.querySelector('.card-text');
-    placeJoke.innerHTML = joke;
+    placeJoke.innerHTML = jokeFinal;
 }
+
 
 let reportAcudits = [];
 
-function createReport() {
-    let score = 0;
-    for (var i=0; i<scoreContent.length; i++) {
-        if (scoreContent[i].checked) { 
-            break; 
-        };
-        score = scoreContent[i].value;
-    };
+function createReport(jokeScore) {
     const d = new Date();
-    let date = d.toISOString();
+    const date = d.toISOString();
     let newJoke = {
-        joke: joke,
-        score: score,
+        joke: jokeFinal,
+        score: jokeScore,
         date: date
     }
     reportAcudits.push(newJoke);
