@@ -1,3 +1,40 @@
+// 32d17f6cbec5cabafd6ab5fd5f281fef
+window.addEventListener('load', ()=>{
+    let lon;
+    let lat;
+    const iconoClima = document.getElementById('clima-icono');
+    const valorClima = document.getElementById('clima-valor');
+    const ubicacionClima = document.getElementById('clima-ubicacion');
+
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition( position => {
+            lon = position.coords.longitude;
+            lat = position.coords.latitude;
+
+            const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=32d17f6cbec5cabafd6ab5fd5f281fef`;
+            async function fetchClima() {
+                try {
+                    const response = await fetch(url);
+                    const json = await response.json();
+                    console.log(json)
+                    let valor = Math.round(json.main.temp);
+                    valorClima.textContent = `${valor} ºC`;
+                    ubicacionClima.textContent = json.name;
+                    const iconoCode = json.weather[0].icon;
+                    iconoClima.src = `http://openweathermap.org/img/wn/${iconoCode}@2x.png`;
+    
+                } catch (error) {
+                    console.log(error);
+                }
+            }
+            fetchClima();
+        })
+    }
+    
+});
+
+
+
 const chisteAPIButton = document.querySelector('.btn');
 chisteAPIButton.addEventListener('click', addJoke);
 const scoreContent = document.querySelector('.joke-score');
@@ -15,8 +52,6 @@ async function fetchJoke() {
                         });
         const json = await response.json();
         jokeDad = json.joke;
-        // joke = addJoke(json.joke);
-        // scoreContent.style.display = 'inline';
     } catch (error) {
         console.log(error);
     }
@@ -42,7 +77,6 @@ function addJoke() {
         fetchChuck();
         jokeFinal = jokeChuck;
     }
-    console.log(':)')
     scoreContent.style.display = 'inline';
     const placeJoke = document.querySelector('.card-text');
     placeJoke.innerHTML = jokeFinal;
@@ -54,12 +88,15 @@ let reportAcudits = [];
 function createReport(jokeScore) {
     const d = new Date();
     const date = d.toISOString();
-    let newJoke = {
-        joke: jokeFinal,
-        score: jokeScore,
-        date: date
+    const alreadyScored = reportAcudits.some(report => report.joke == jokeFinal)
+    if (!alreadyScored){
+        let newJoke = {
+            joke: jokeFinal,
+            score: jokeScore,
+            date: date
+        }
+        reportAcudits.push(newJoke);
+        console.log(reportAcudits); 
     }
-    reportAcudits.push(newJoke);
-    console.log(reportAcudits); 
 }
 
