@@ -4,35 +4,31 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <title>acudits</title>
     <link rel="stylesheet" href="style.css">
-  </head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Antic&family=Roboto&family=Montserrat&family=Bungee&family=Philosopher&family=Bungee+Shade&display=swap" rel="stylesheet">  </head>
   <body>
-
     <div class="clima-contenedor">
+      <p id="clima-valor"  ></p>
       <img id="clima-icono" src="" alt="" height="50" width="50" >
-      <h1 id="clima-valor"></h1>
-      <h2 id="clima-ubicacion"></h2>
+      <p id="clima-ubicacion" ></p>
     </div>
-
-    <div class="card m-auto mt-5" style="width: 18rem;">
-    <div class="card-body text-center">
-        <h5 class="card-title">Start your day laughing</h5>
-        <p class="card-text">Press if you want to hear a new joke.</p>
-        <form name="scores" class="joke-score">
-          <p>Score this joke</p>
-          <input type="radio" onclick="createReport(1)" id="score1" name="score" value="1">
-          <label for="score1"><img src="https://img.icons8.com/external-justicon-lineal-color-justicon/64/000000/external-emoji-emoji-justicon-lineal-color-justicon-1.png"/></label>
-          <input type="radio" onclick="createReport(2)" id="score2" name="score" value="2">
-          <label for="score2"><img src="https://img.icons8.com/external-justicon-lineal-color-justicon/64/000000/external-emoji-emoji-justicon-lineal-color-justicon-3.png"/></label>
-          <input type="radio" onclick="createReport(3)" id="score3" name="score" value="3">
-          <label for="score3"><img src="https://img.icons8.com/external-justicon-lineal-color-justicon/64/000000/external-emoji-emoji-justicon-lineal-color-justicon-7.png"/></label>
-        </form>
-        <a class="btn btn-primary">New joke</a>
-    </div>
-    </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <div id="joke-container" class="container-color">
+      <h5 id="card-title">ready to <br> laugh?</h5>
+      <div class="card"><p class="card-text">Press if you want to hear a new joke.</p></div>
+      <form name="scores" class="joke-score">
+        <!-- <p id="score-text">It made you laugh?</p> -->
+        <input type="radio" onclick="createReport(1)" id="score1" name="score">
+        <label for="score1"><img src="https://img.icons8.com/color/48/000000/boring--v1.png"/></label>
+        <input type="radio" onclick="createReport(2)" id="score2" name="score">
+        <label for="score2"><img src="https://img.icons8.com/color/48/000000/neutral-emoticon--v1.png"/></label>
+        <input type="radio" onclick="createReport(3)" id="score3" name="score">
+        <label for="score3"><img src="https://img.icons8.com/color/48/000000/smiling.png"/></label>
+      </form>
+      <a class="btn">New joke</a>
+</div>
     <script src="chistes.js"></script>
   </body>
 </html>

@@ -1,4 +1,3 @@
-// 32d17f6cbec5cabafd6ab5fd5f281fef
 window.addEventListener('load', ()=>{
     let lon;
     let lat;
@@ -10,19 +9,16 @@ window.addEventListener('load', ()=>{
         navigator.geolocation.getCurrentPosition( position => {
             lon = position.coords.longitude;
             lat = position.coords.latitude;
-
             const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=32d17f6cbec5cabafd6ab5fd5f281fef`;
             async function fetchClima() {
                 try {
                     const response = await fetch(url);
                     const json = await response.json();
-                    console.log(json)
                     let valor = Math.round(json.main.temp);
                     valorClima.textContent = `${valor} ºC`;
                     ubicacionClima.textContent = json.name;
                     const iconoCode = json.weather[0].icon;
                     iconoClima.src = `http://openweathermap.org/img/wn/${iconoCode}@2x.png`;
-    
                 } catch (error) {
                     console.log(error);
                 }
@@ -33,15 +29,12 @@ window.addEventListener('load', ()=>{
     
 });
 
-
-
 const chisteAPIButton = document.querySelector('.btn');
 chisteAPIButton.addEventListener('click', addJoke);
 const scoreContent = document.querySelector('.joke-score');
+const colorBackground = document.getElementById('joke-container');
 
-let jokeDad = '';
-let jokeChuck = '';
-let jokeFinal = '';
+let jokeFinal;
 
 async function fetchJoke() {
     const url = 'https://icanhazdadjoke.com/';
@@ -51,17 +44,24 @@ async function fetchJoke() {
                             }
                         });
         const json = await response.json();
-        jokeDad = json.joke;
+        jokeFinal = json.joke;
+        scoreContent.style.visibility = 'visible';
+        const placeJoke = document.querySelector('.card-text');
+    placeJoke.innerHTML = jokeFinal;
     } catch (error) {
         console.log(error);
     }
 }
+
 async function fetchChuck () {
     const url = 'https://api.chucknorris.io/jokes/random';
     try {
         const response = await fetch(url);
         const json = await response.json();
-        jokeChuck = json.value;
+        jokeFinal = json.value;
+        scoreContent.style.visibility = 'visible';
+    const placeJoke = document.querySelector('.card-text');
+    placeJoke.innerHTML = jokeFinal;
     } catch (error) {
         console.log(error);
     }
@@ -69,17 +69,12 @@ async function fetchChuck () {
 
 function addJoke() {
     const randomNumber = Math.floor(Math.random() * 2) + 1;
-
     if ( randomNumber === 1) {
         fetchJoke();
-        jokeFinal = jokeDad;
     } else {
         fetchChuck();
-        jokeFinal = jokeChuck;
     }
-    scoreContent.style.display = 'inline';
-    const placeJoke = document.querySelector('.card-text');
-    placeJoke.innerHTML = jokeFinal;
+    changeBackground();
 }
 
 
@@ -100,3 +95,14 @@ function createReport(jokeScore) {
     }
 }
 
+function changeBackground() {
+    if (colorBackground.classList.contains('container-color')) {
+        colorBackground.classList.replace('container-color', 'container-color2');
+    } else if (colorBackground.classList.contains('container-color2')) {
+        colorBackground.classList.replace('container-color2', 'container-color3');
+    } else if (colorBackground.classList.contains('container-color3')) {
+        colorBackground.classList.replace('container-color3', 'container-color4');
+    } else if (colorBackground.classList.contains('container-color4')) {
+        colorBackground.classList.replace('container-color4', 'container-color');
+    }
+}
