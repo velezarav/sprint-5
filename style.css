@@ -1,9 +1,18 @@
-html,body{
+@import url('https://fonts.googleapis.com/css2?family=Antic&family=Bungee&family=Bungee+Shade&family=Hubballi&family=Montserrat:wght@500&family=Oxygen:wght@700&family=Philosopher&family=Press+Start+2P&family=Reenie+Beanie&family=Roboto&family=Roboto+Serif:wght@500&display=swap');
+
+html {
+    height:100%;
+    width:100%;
+}
+
+body {
     height:100%;
     width:100%;
     margin: 0;
     padding: 0;
     font-family: 'Bungee', cursive;
+    background-image: url(/img/cieli2.jpg);
+
 }
 
 .clima-contenedor {
@@ -13,8 +22,9 @@ html,body{
     display: flex;
     text-align: center;
     flex-direction: row;
-    color: rgb(123, 123, 123);
-    font-family: 'Roboto', sans-serif;
+    color: rgb(77, 77, 77);
+    font-family: 'Press Start 2P', cursive;
+    font-size: .75rem;
     text-align: center;
 }
 
@@ -33,6 +43,7 @@ html,body{
 }
 
 #joke-container {
+    overflow: visible;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -41,7 +52,7 @@ html,body{
     height: 100%;
     background-repeat: no-repeat;
     background-position: center;
-    background-size: 120%;
+    background-size: 90%;
 }
 
 #joke-container h5 {
@@ -67,20 +78,20 @@ html,body{
 
 
 #card-title {
-    font-family: 'Bungee Shade', cursive;
-    /* font-family: 'Philosopher', sans-serif; */
+    font-family: 'Press Start 2P', cursive;
+    color: rgb(252, 210, 71);
+    line-height: 2.8rem;
+    letter-spacing: .3rem;
     font-size: 2rem;
     align-self: center;
-    color: white;
     text-shadow: 1px 1px rgb(194, 177, 240);
 }
 
 .card {
     display: flex;
     justify-content: space-around;
-    align-items: center;
-    width: 80%;
-    height: 15rem;
+    width: 40%;
+    height: 16rem;
     align-self: center;
     color: white;
     overflow: auto;
@@ -88,13 +99,15 @@ html,body{
 
 .card-text {
     max-width: 80%;
-    font-family: 'Roboto', sans-serif;
-    font-size: 1.5em;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 1.3em;
+    line-height: 1.8rem;
     margin-top: .5rem;
 }
 
 
 .joke-score {
+    margin-top: 1rem;
     visibility: hidden;
 }
 
@@ -104,7 +117,11 @@ html,body{
 
 .joke-score label {
     cursor: pointer;
-    margin: 0 .5rem 1rem .5rem;
+    margin: 0 .5rem 5rem .5rem;
+}
+
+.joke-score label img {
+    height: 3.5rem;
 }
 
 .joke-score label img:active {
@@ -122,11 +139,25 @@ html,body{
 }
 
 .btn {
-    margin-top: 1rem;
+    margin-top: 2rem;
     margin-bottom: 10%;
-    font-size: 1.2rem;    
+    font-size: 1.75rem; 
+    text-shadow: .75px .75px rgb(0, 0, 0, .3);   
 }
 
 .btn:hover {
-    color: rgb(0,0,0, 0.5);
+    color: rgb(252, 210, 71);
 }
+
+@media (max-width: 600px) {
+    .card {
+        width: 80%;
+    }
+    .card-text {
+        font-size: 1em;
+    }
+    #joke-container {
+        background-size: 130%;
+    }
+}
+
